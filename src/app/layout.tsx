@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Footer } from "@/components/layout/footer";
+import { Navbar } from "@/components/layout/navbar";
+
 import "./globals.css";
 
 const geistSans = Geist({
@@ -12,10 +15,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+
 export const metadata: Metadata = {
-  title: "memoir. — Platform Photobooth SaaS",
+  title: "memoir. — Platform Photobooth Receipt",
   description:
-    "Platform B2B2C SaaS photobooth terlengkap. Kelola booth, terima pembayaran QRIS, dan pantau bisnis dari satu dashboard.",
+    "Platform B2B2C SaaS yang memungkinkan siapa saja membangun dan mengoperasikan bisnis photobooth receipt tanpa membangun sistem dari nol.",
 };
 
 export default function RootLayout({
@@ -28,7 +32,11 @@ export default function RootLayout({
       lang="id"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Navbar />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
