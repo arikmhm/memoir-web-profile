@@ -10,7 +10,7 @@ const links = [
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-blue-600 text-white">
+    <footer className="relative overflow-hidden bg-[#D4845A] text-white">
       {/* Noise overlay khusus footer */}
       <NoiseOverlay />
 

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export function Cta() {
   return (
-    <section id="kontak" className="border-t border-border py-24 md:py-32">
+    <section id="kontak" className="py-24 md:py-32">
       <div className="mx-auto max-w-3xl px-6 text-center">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}

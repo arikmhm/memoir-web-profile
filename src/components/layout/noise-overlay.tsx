@@ -8,7 +8,7 @@ export function NoiseOverlay({
   return (
     <div
       aria-hidden="true"
-      className={`pointer-events-none absolute inset-0 z-1 mix-blend-overlay ${className}`}
+      className={`pointer-events-none absolute inset-0 z-1 mix-blend-multiply ${className}`}
     >
       <svg width="100%" height="100%">
         <filter id="noise">
@@ -19,7 +19,12 @@ export function NoiseOverlay({
             stitchTiles="stitch"
           />
         </filter>
-        <rect width="100%" height="100%" filter="url(#noise)" opacity={opacity} />
+        <rect
+          width="100%"
+          height="100%"
+          filter="url(#noise)"
+          opacity={opacity}
+        />
       </svg>
     </div>
   );

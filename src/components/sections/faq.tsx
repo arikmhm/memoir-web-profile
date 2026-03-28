@@ -90,7 +90,7 @@ function FaqItem({
 
 export function Faq() {
   return (
-    <section id="faq" className="border-t border-border py-24 md:py-32">
+    <section id="faq" className="py-24 md:py-32">
       <div className="mx-auto max-w-3xl px-6">
         <motion.p
           initial={{ opacity: 0, y: 16 }}

@@ -1,29 +1,28 @@
 import { Hero } from "@/components/sections/hero";
-import { About } from "@/components/sections/about";
+import { Product } from "@/components/sections/product";
 import { Gallery } from "@/components/sections/gallery";
-import { Story } from "@/components/sections/story";
-import { Showcase } from "@/components/sections/showcase";
+import { Advantages } from "@/components/sections/advantages";
 import { Timeline } from "@/components/sections/timeline";
-import { Features } from "@/components/sections/features";
-import { Testimonials } from "@/components/sections/testimonials";
 import { Pricing } from "@/components/sections/pricing";
 import { Faq } from "@/components/sections/faq";
 import { Cta } from "@/components/sections/cta";
+import { ReceiptDivider } from "@/components/layout/receipt-divider";
 
 export default function Home() {
   return (
     <main className="flex flex-1 flex-col">
       <Hero />
-      <About />
-      <Story />
-      <Showcase />
-      <Timeline />
-      <Features />
-      <Gallery />
-      <Testimonials />
-      <Pricing />
-      <Faq />
-      <Cta />
+      <div className="relative z-10 bg-background">
+        <Product />
+        <Advantages />
+        <Timeline />
+        <Gallery />
+        <Pricing />
+        <ReceiptDivider />
+        <Faq />
+        <ReceiptDivider />
+        <Cta />
+      </div>
     </main>
   );
 }

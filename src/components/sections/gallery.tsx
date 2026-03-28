@@ -11,9 +11,9 @@ const photos = [
     mLeft: "10%",
     top: "5%",
     mTop: "0%",
-    w: 340,
+    w: 240,
     mW: 160,
-    h: 420,
+    h: 320,
     mH: 200,
     z: 2,
     speed: 0.05,
@@ -41,7 +41,7 @@ const photos = [
     mW: 180,
     h: 480,
     mH: 220,
-    z: 3,
+    z: 6,
     speed: -0.5,
     src: "/images/galeri/img3.jpg",
   },
@@ -263,15 +263,10 @@ export function Gallery() {
   return (
     <section
       ref={sectionRef}
-      className="relative -mt-1 overflow-hidden bg-blue-600"
+      className="relative overflow-hidden bg-[#D4845A]"
     >
       {/* Noise overlay */}
       <NoiseOverlay />
-
-      {/* Vertical line connecting from hero */}
-      <div className="relative z-2 flex justify-center">
-        <div className="h-24 w-px bg-linear-to-b from-white/40 to-white/10" />
-      </div>
 
       {/* Gallery area */}
       <div className="relative z-2 mx-auto max-w-6xl px-6">
@@ -293,11 +288,6 @@ export function Gallery() {
             />
           ))}
         </div>
-      </div>
-
-      {/* Vertical line going out */}
-      <div className="relative z-2 flex justify-center">
-        <div className="h-24 w-px bg-linear-to-b from-white/10 to-transparent" />
       </div>
     </section>
   );
