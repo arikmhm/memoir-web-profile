@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { motion } from "framer-motion";
 import { Download, Loader2, Camera, ImageOff } from "lucide-react";
 
@@ -24,6 +24,20 @@ export default function PreviewContent({
   const [timedOut, setTimedOut] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  // Handle browser-cached images that load before hydration
+  useEffect(() => {
+    const img = imgRef.current;
+    if (!img) return;
+    if (img.complete) {
+      if (img.naturalHeight > 0) {
+        setImageLoaded(true);
+      } else {
+        setImageError(true);
+      }
+    }
+  }, []);
 
   // Poll when session is still processing
   useEffect(() => {
@@ -154,6 +168,7 @@ export default function PreviewContent({
         )}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
+          ref={imgRef}
           src={data.downloadUrl}
           alt="Foto photobooth"
           onLoad={() => setImageLoaded(true)}
