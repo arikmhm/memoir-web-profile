@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const session = await getSession(transactionId);
 
   const base = {
-    title: "Foto Kamu — memoir.",
+    title: "memoir. | Preview",
     description: "Lihat dan download foto dari sesi photobooth kamu.",
   };
 
