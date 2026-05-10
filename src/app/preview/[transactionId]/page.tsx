@@ -10,6 +10,7 @@ const API_URL =
 type SessionData = {
   status: "ready" | "processing";
   downloadUrl?: string;
+  createdAt?: string;
 };
 
 const getSession = cache(
