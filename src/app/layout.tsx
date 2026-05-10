@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 
 export const metadata: Metadata = {
-  title: "memoir. — Platform Photobooth Receipt",
+  title: "memoir.",
   description:
     "Platform B2B2C SaaS yang memungkinkan siapa saja membangun dan mengoperasikan bisnis photobooth receipt tanpa membangun sistem dari nol.",
 };

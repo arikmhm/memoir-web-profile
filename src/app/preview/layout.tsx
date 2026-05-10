@@ -1,5 +1,10 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { NoiseOverlay } from "@/components/layout/noise-overlay";
+
+export const metadata: Metadata = {
+  title: "memoir. | Preview",
+};
 
 export default function PreviewLayout({
   children,
