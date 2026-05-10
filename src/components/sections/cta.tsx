@@ -14,9 +14,9 @@ export function Cta() {
           transition={{ duration: 0.6 }}
           className="text-2xl font-semibold tracking-tight md:text-3xl lg:text-4xl"
         >
-          Siap bantu orang lain
+          Mulai bisnis photobooth-mu
           <br />
-          <span className="text-muted-foreground">menyimpan momennya?</span>
+          <span className="text-muted-foreground">sekarang, tanpa ribet.</span>
         </motion.h2>
 
         <motion.p
@@ -26,7 +26,8 @@ export function Cta() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="mt-4 text-sm text-muted-foreground md:text-base"
         >
-          Mulai dari yang kecil — satu booth, satu event. Kami di sini untuk menemani perjalananmu.
+          Satu booth sudah cukup untuk mulai. Kami urus semuanya sampai kamu
+          siap jalan.
         </motion.p>
 
         <motion.div
@@ -40,15 +41,15 @@ export function Cta() {
             href="https://wa.me/6285162894121"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex h-11 items-center rounded-lg bg-primary px-6 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="inline-flex h-11 items-center rounded-lg px-6 text-sm font-medium text-primary-foreground transition-colors bg-[#D4845A] hover:bg-[#D4845A]/80"
           >
             Hubungi via WhatsApp
           </Link>
           <Link
             href="mailto:memoir.archiveproject@gmail.com"
-            className="inline-flex h-11 items-center text-sm text-muted-foreground transition-colors hover:text-foreground"
+            className="inline-flex h-11 items-center text-sm text-muted-foreground transition-colors hover:text-foreground font-semibold"
           >
-            Email kami &rarr;
+            Email kami
           </Link>
         </motion.div>
       </div>

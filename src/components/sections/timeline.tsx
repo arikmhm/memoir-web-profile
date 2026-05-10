@@ -7,14 +7,12 @@ const steps = [
   {
     number: "01",
     title: "Pesan Paket",
-    description:
-      "Hubungi kami dan pesan paket booth Anda.",
+    description: "Hubungi kami dan pesan paket booth Anda.",
   },
   {
     number: "02",
     title: "Setup Booth",
-    description:
-      "Paket sampai, tinggal taruh di lokasi yang Anda inginkan.",
+    description: "Paket sampai, tinggal taruh di lokasi yang Anda inginkan.",
   },
   {
     number: "03",
@@ -25,12 +23,17 @@ const steps = [
   {
     number: "04",
     title: "Siap Beroperasi",
-    description:
-      "Booth Anda sudah live. Mulai terima customer.",
+    description: "Booth Anda sudah live. Mulai terima customer.",
   },
 ];
 
-function ScrollLine({ className, left }: { className?: string; left?: string }) {
+function ScrollLine({
+  className,
+  left,
+}: {
+  className?: string;
+  left?: string;
+}) {
   const lineRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: lineRef,
@@ -57,16 +60,6 @@ export function Timeline() {
   return (
     <section id="cara-kerja" className="overflow-visible py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6">
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center text-sm uppercase tracking-widest text-muted-foreground"
-        >
-          Cara kerja
-        </motion.p>
-
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -127,7 +120,9 @@ export function Timeline() {
                   <div className="flex w-1/2 justify-end pr-10">
                     {isLeft && (
                       <div className="max-w-sm rounded-xl border border-border bg-muted/50 px-5 py-4 text-right">
-                        <h3 className="text-base font-semibold">{step.title}</h3>
+                        <h3 className="text-base font-semibold">
+                          {step.title}
+                        </h3>
                         <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
                           {step.description}
                         </p>
@@ -146,7 +141,9 @@ export function Timeline() {
                   <div className="flex w-1/2 justify-start pl-10">
                     {!isLeft && (
                       <div className="max-w-sm rounded-xl border border-border bg-muted/50 px-5 py-4">
-                        <h3 className="text-base font-semibold">{step.title}</h3>
+                        <h3 className="text-base font-semibold">
+                          {step.title}
+                        </h3>
                         <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
                           {step.description}
                         </p>

@@ -50,7 +50,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4 }}
-          className="mt-12 w-full max-w-3xl sm:mt-16 md:max-w-5xl"
+          className="mt-12 w-full max-w-7xl sm:mt-16"
         >
           <Image
             src="/images/product-memoir.png"

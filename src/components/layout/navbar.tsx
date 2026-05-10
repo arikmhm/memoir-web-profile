@@ -48,16 +48,19 @@ export function Navbar() {
           aria-label="Toggle menu"
         >
           <motion.span
-            animate={mobileOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
-            className="block h-0.5 w-6 bg-foreground"
+            animate={mobileOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
+            transition={{ duration: 0.2 }}
+            className="block h-0.5 w-6 origin-center bg-foreground"
           />
           <motion.span
-            animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
-            className="block h-0.5 w-6 bg-foreground"
+            animate={mobileOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
+            transition={{ duration: 0.15 }}
+            className="block h-0.5 w-6 origin-center bg-foreground"
           />
           <motion.span
-            animate={mobileOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
-            className="block h-0.5 w-6 bg-foreground"
+            animate={mobileOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
+            transition={{ duration: 0.2 }}
+            className="block h-0.5 w-6 origin-center bg-foreground"
           />
         </button>
       </div>

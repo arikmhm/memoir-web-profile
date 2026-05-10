@@ -13,15 +13,20 @@ import {
   Palette,
   Receipt,
   Settings,
+  Download,
+  Tablet,
+  Wrench,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { IntegrationTree } from "@/components/ui/integration-tree";
 
 const highlights = [
   { label: "Booth Siap Pakai", icon: Box },
-  { label: "Software Included", icon: Smartphone },
+  { label: "Tablet Included", icon: Tablet },
   { label: "Printer Thermal", icon: Printer },
+  { label: "Software Included", icon: Smartphone },
   { label: "Dashboard Online", icon: LayoutDashboard },
+  { label: "Setup & Service", icon: Wrench },
 ];
 
 const runnerFeatures: {
@@ -30,25 +35,34 @@ const runnerFeatures: {
   icon: LucideIcon;
 }[] = [
   {
-    title: "Foto Otomatis",
+    title: "Tampilan Custom",
     description:
-      "Customer tinggal pose, sistem menangkap momen secara otomatis.",
-    icon: Camera,
+      "Sesuaikan tampilan booth dengan brand atau tema event Anda.",
+    icon: Palette,
   },
   {
     title: "Self Payment",
-    description: "Pembayaran langsung di booth via QRIS atau cash.",
+    description:
+      "Terima pembayaran langsung via QRIS, didukung payment gateway terintegrasi.",
     icon: CreditCard,
   },
   {
-    title: "Cetak Instan",
-    description: "Foto tercetak di kertas thermal dalam hitungan detik.",
-    icon: Printer,
+    title: "Mudah Digunakan",
+    description:
+      "Antarmuka sederhana dan intuitif — siapapun bisa langsung pakai tanpa arahan.",
+    icon: Smartphone,
   },
   {
-    title: "Tampilan Interaktif",
-    description: "Antarmuka yang intuitif, siapa saja bisa langsung pakai.",
-    icon: Smartphone,
+    title: "Terhubung ke Dashboard",
+    description:
+      "Setiap transaksi tercatat otomatis dan bisa dipantau real-time dari dashboard.",
+    icon: LayoutDashboard,
+  },
+  {
+    title: "Softfile Digital",
+    description:
+      "Customer menerima file foto digital langsung ke HP setelah sesi selesai.",
+    icon: Download,
   },
 ];
 
@@ -58,40 +72,44 @@ const dashboardFeatures: {
   icon: LucideIcon;
 }[] = [
   {
-    title: "Dashboard",
-    description: "Pantau semua booth Anda dalam satu tampilan.",
-    icon: LayoutDashboard,
-  },
-  {
     title: "Template Editor",
-    description: "Desain layout foto sendiri, langsung dari browser.",
+    description:
+      "Buat template layout foto sebebas mungkin langsung dari browser — tidak perlu skill desain, flow-nya mudah diikuti.",
     icon: Palette,
   },
   {
-    title: "Transaksi & Laporan",
-    description: "Lihat pemasukan real-time dari setiap booth.",
+    title: "Dashboard",
+    description: "Lihat ringkasan data dan laporan performa semua booth dalam satu tampilan.",
+    icon: LayoutDashboard,
+  },
+  {
+    title: "Kiosk",
+    description: "Setup dan konfigurasi setiap booth langsung dari dashboard.",
+    icon: Settings,
+  },
+  {
+    title: "Transaksi",
+    description: "Pantau setiap transaksi yang terjadi di booth secara real-time.",
     icon: Receipt,
   },
   {
-    title: "Konfigurasi Booth",
-    description: "Atur semuanya dari satu tempat.",
-    icon: Settings,
+    title: "Payment Configuration",
+    description: "Hubungkan booth dengan payment gateway dalam beberapa langkah.",
+    icon: CreditCard,
   },
 ];
 
 export function Product() {
   return (
     <section className="py-24 md:py-32">
-      <div className="mx-auto max-w-8xl px-4 sm:px-6 lg:px-32">
+      <div className="mx-auto max-w-7xl ">
         {/* Heading */}
         <h2 className="mb-12 text-center text-2xl font-semibold leading-snug tracking-tight md:mb-16 md:text-3xl lg:text-4xl">
           <span className="italic">
             &ldquo;Semua kerumitan receipt photobooth,
           </span>
           <br />
-          <span className="text-[#D4845A]">
-            kami sederhanakan.&rdquo;
-          </span>
+          <span className="text-[#D4845A]">kami sederhanakan.&rdquo;</span>
         </h2>
 
         {/* Stacked cards — no gap, no rounded */}
@@ -106,13 +124,14 @@ export function Product() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.6 }}
-                className="relative aspect-3/4 w-full max-w-55 shrink-0 sm:max-w-65"
+                className="relative w-full shrink-0 self-center md:w-[45%]"
               >
                 <Image
                   src="/images/galeri/product-removebg-preview.png"
                   alt="Receipt photobooth memoir"
-                  fill
-                  className="object-contain drop-shadow-2xl"
+                  width={600}
+                  height={800}
+                  className="h-auto w-full object-contain drop-shadow-2xl"
                 />
               </motion.div>
 
@@ -122,9 +141,9 @@ export function Product() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-80px" }}
                   transition={{ duration: 0.5 }}
-                  className="text-lg font-semibold tracking-tight text-white md:text-xl"
+                  className="text-2xl font-semibold leading-tight tracking-tight text-white md:text-3xl"
                 >
-                  memoir. Receipt Photobooth
+                  memoir. Receipt Photobooth.
                 </motion.h3>
 
                 <motion.p
@@ -132,7 +151,7 @@ export function Product() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-80px" }}
                   transition={{ duration: 0.5, delay: 0.1 }}
-                  className="mt-3 max-w-md text-justify text-sm leading-relaxed text-white/70"
+                  className="mt-4 max-w-md text-sm leading-relaxed text-white/70"
                 >
                   Satu paket lengkap berisi booth, printer, dan software yang
                   memungkinkan siapa saja memulai bisnis receipt photobooth
@@ -180,15 +199,12 @@ export function Product() {
 
               <div className="flex-1">
                 <div className="mb-10 max-w-md">
-                  <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
-                    Aplikasi Booth
-                  </p>
-                  <h3 className="mt-3 text-2xl font-semibold leading-tight tracking-tight text-foreground md:text-3xl">
-                    Pengalaman di Booth.
+                  <h3 className="text-2xl font-semibold leading-tight tracking-tight text-foreground md:text-3xl">
+                    Aplikasi Booth.
                   </h3>
                   <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                    Aplikasi yang berjalan di setiap booth, melayani customer
-                    dari foto hingga cetak tanpa perlu operator.
+                    Aplikasi yang menjalankan booth sehari-hari, melayani
+                    customer secara mandiri dari awal hingga akhir sesi.
                   </p>
                 </div>
 
@@ -200,11 +216,8 @@ export function Product() {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true, margin: "-60px" }}
                       transition={{ duration: 0.4, delay: 0.1 + i * 0.06 }}
-                      className="flex items-center gap-5 py-5"
+                      className="flex items-center gap-4 py-4"
                     >
-                      <span className="shrink-0 font-mono text-2xl font-bold text-muted-foreground/30">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
                       <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-muted shadow-sm">
                         <item.icon className="h-4 w-4 stroke-[1.5] text-[#D4845A]" />
                       </div>
@@ -226,16 +239,23 @@ export function Product() {
           {/* Card 3 — Dashboard: bento grid */}
           <div className="border-t border-border bg-background p-8 md:p-12 lg:p-14">
             <div className="mb-10 max-w-md">
-              <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
-                Web Dashboard
-              </p>
-              <h3 className="mt-3 text-2xl font-semibold leading-tight tracking-tight text-foreground md:text-3xl">
-                Kelola Semua dari Satu Tempat.
+              <h3 className="text-2xl font-semibold leading-tight tracking-tight text-foreground md:text-3xl">
+                Web Dashboard.
               </h3>
               <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
                 Dashboard web untuk memantau, mengatur, dan mengembangkan bisnis
                 photobooth Anda dari mana saja.
               </p>
+            </div>
+
+            <div className="mb-10 overflow-hidden bg-muted">
+              <Image
+                src="/images/product-memoir.png"
+                alt="Tampilan web dashboard memoir"
+                width={1600}
+                height={900}
+                className="h-auto w-full object-cover"
+              />
             </div>
 
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
@@ -246,16 +266,12 @@ export function Product() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-60px" }}
                   transition={{ duration: 0.4, delay: 0.1 + i * 0.06 }}
-                  className={`bg-muted p-5 ${
-                    i === 0
-                      ? "sm:col-span-2 sm:row-span-2 sm:flex sm:flex-col sm:justify-between sm:p-8"
-                      : ""
-                  }`}
+                  className={`bg-muted p-5 ${i === 0 ? "sm:col-span-2 sm:p-8" : ""}`}
                 >
                   <item.icon
                     className={`stroke-[1.5] text-[#D4845A] ${i === 0 ? "h-7 w-7" : "h-5 w-5"}`}
                   />
-                  <div className={i === 0 ? "mt-auto pt-6" : "mt-3"}>
+                  <div className={i === 0 ? "mt-4 pt-2" : "mt-3"}>
                     <h4
                       className={`font-semibold text-foreground ${i === 0 ? "text-base" : "text-sm"}`}
                     >
