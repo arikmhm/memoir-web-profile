@@ -3,7 +3,9 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import PreviewContent from "./preview-content";
 
-const API_URL = process.env.API_URL || "https://backend-memoir.vercel.app/api/v1";
+const API_URL =
+  process.env.API_URL ||
+  "https://backend-memoir-development.up.railway.app/api/v1";
 
 type SessionData = {
   status: "ready" | "processing";
@@ -13,10 +15,9 @@ type SessionData = {
 const getSession = cache(
   async (transactionId: string): Promise<SessionData | null> => {
     try {
-      const res = await fetch(
-        `${API_URL}/public/sessions/${transactionId}`,
-        { cache: "no-store" },
-      );
+      const res = await fetch(`${API_URL}/public/sessions/${transactionId}`, {
+        cache: "no-store",
+      });
       if (!res.ok) return null;
       const json = await res.json();
       return json.data;

@@ -19,7 +19,12 @@ export async function GET(request: NextRequest) {
     return new NextResponse("Forbidden", { status: 403 });
   }
 
-  const upstream = await fetch(url);
+  let upstream: Response;
+  try {
+    upstream = await fetch(url);
+  } catch {
+    return new NextResponse("Failed to fetch upstream", { status: 502 });
+  }
   if (!upstream.ok) {
     return new NextResponse("Upstream error", { status: upstream.status });
   }
