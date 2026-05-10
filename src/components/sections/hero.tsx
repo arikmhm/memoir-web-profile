@@ -3,14 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { NoiseOverlay } from "@/components/layout/noise-overlay";
-
 export function Hero() {
   return (
-    <section className="flex h-screen flex-col overflow-hidden bg-stone-100">
-      <NoiseOverlay opacity={0.7} />
+    <section className="relative flex flex-col overflow-hidden bg-stone-100 md:min-h-screen">
 
-      <div className="relative z-10 flex flex-1 flex-col items-center px-5 pt-24 sm:px-8 md:pt-28 lg:pt-32">
+      <div className="relative z-10 flex flex-1 flex-col items-center px-5 pt-24 pb-12 sm:px-8 sm:pb-16 md:pt-28 md:pb-20 lg:pt-32">
         {/* Heading */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
@@ -48,23 +45,22 @@ export function Hero() {
           </Link>
         </motion.div>
 
-        {/* Hero image — fills remaining space, clipped at bottom */}
+        {/* Hero image — full image always visible */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4 }}
-          className="relative mt-12 min-h-0 w-full max-w-md flex-1 sm:mt-16 sm:max-w-sm md:max-w-md"
+          className="mt-12 w-full max-w-3xl sm:mt-16 md:max-w-5xl"
         >
-          <div className="relative h-full overflow-hidden rounded-t-2xl sm:rounded-t-3xl">
-            <Image
-              src="/images/hero-image.png"
-              alt="Booth receipt photobooth memoir"
-              fill
-              priority
-              sizes="(max-width: 640px) 320px, (max-width: 768px) 384px, 448px"
-              className="object-cover object-top"
-            />
-          </div>
+          <Image
+            src="/images/product-memoir.png"
+            alt="Booth receipt photobooth memoir"
+            width={1024}
+            height={572}
+            priority
+            sizes="(max-width: 640px) 384px, (max-width: 768px) 512px, 672px"
+            className="h-auto w-full rounded"
+          />
         </motion.div>
       </div>
     </section>

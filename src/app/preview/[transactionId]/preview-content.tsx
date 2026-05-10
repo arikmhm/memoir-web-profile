@@ -152,14 +152,14 @@ export default function PreviewContent({
       className="flex flex-col items-center gap-6"
     >
       {/* Photo */}
-      <div className="relative overflow-hidden rounded-xl shadow-lg">
+      <div className="relative overflow-hidden shadow-lg">
         {!imageLoaded && !imageError && (
-          <div className="flex h-80 w-56 items-center justify-center rounded-xl bg-muted">
+          <div className="flex h-80 w-56 items-center justify-center bg-muted">
             <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
           </div>
         )}
         {imageError && (
-          <div className="flex h-80 w-56 flex-col items-center justify-center gap-2 rounded-xl bg-muted">
+          <div className="flex h-80 w-56 flex-col items-center justify-center gap-2 bg-muted">
             <ImageOff className="h-8 w-8 text-muted-foreground" />
             <p className="text-xs text-muted-foreground">
               Gagal memuat gambar
@@ -173,7 +173,7 @@ export default function PreviewContent({
           alt="Foto photobooth"
           onLoad={() => setImageLoaded(true)}
           onError={() => setImageError(true)}
-          className={`max-h-[70vh] w-auto max-w-full rounded-xl ${
+          className={`max-h-[70vh] w-auto max-w-full ${
             !imageLoaded || imageError ? "hidden" : ""
           }`}
         />

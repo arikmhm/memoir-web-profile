@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import PreviewContent from "./preview-content";
 
-const API_URL = process.env.API_URL || "http://localhost:3000/api/v1";
+const API_URL = process.env.API_URL || "https://backend-memoir.vercel.app/api/v1";
 
 type SessionData = {
   status: "ready" | "processing";
@@ -62,7 +62,7 @@ export default async function PreviewPage({ params }: Props) {
   }
 
   return (
-    <div className="flex flex-1 flex-col items-center justify-center px-6 py-12">
+    <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 py-12">
       <PreviewContent initialData={session} transactionId={transactionId} />
     </div>
   );

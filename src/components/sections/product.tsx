@@ -1,8 +1,7 @@
 "use client";
 
-import { useRef } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { NoiseOverlay } from "@/components/layout/noise-overlay";
 import {
   Box,
@@ -25,10 +24,15 @@ const highlights = [
   { label: "Dashboard Online", icon: LayoutDashboard },
 ];
 
-const runnerFeatures: { title: string; description: string; icon: LucideIcon }[] = [
+const runnerFeatures: {
+  title: string;
+  description: string;
+  icon: LucideIcon;
+}[] = [
   {
     title: "Foto Otomatis",
-    description: "Customer tinggal pose, sistem menangkap momen secara otomatis.",
+    description:
+      "Customer tinggal pose, sistem menangkap momen secara otomatis.",
     icon: Camera,
   },
   {
@@ -48,7 +52,11 @@ const runnerFeatures: { title: string; description: string; icon: LucideIcon }[]
   },
 ];
 
-const dashboardFeatures: { title: string; description: string; icon: LucideIcon }[] = [
+const dashboardFeatures: {
+  title: string;
+  description: string;
+  icon: LucideIcon;
+}[] = [
   {
     title: "Dashboard",
     description: "Pantau semua booth Anda dalam satu tampilan.",
@@ -72,36 +80,19 @@ const dashboardFeatures: { title: string; description: string; icon: LucideIcon 
 ];
 
 export function Product() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "start start"],
-  });
-
-  const skewX = useTransform(scrollYProgress, [0, 1], [-40, 0]);
-
   return (
-    <section ref={sectionRef} className="py-24 md:py-32">
-      <div className="mx-auto max-w-5xl px-6">
+    <section className="py-24 md:py-32">
+      <div className="mx-auto max-w-8xl px-4 sm:px-6 lg:px-32">
         {/* Heading */}
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="mb-12 text-center text-2xl font-semibold leading-snug tracking-tight md:mb-16 md:text-3xl lg:text-4xl"
-        >
+        <h2 className="mb-12 text-center text-2xl font-semibold leading-snug tracking-tight md:mb-16 md:text-3xl lg:text-4xl">
           <span className="italic">
             &ldquo;Semua kerumitan receipt photobooth,
           </span>
           <br />
-          <motion.span
-            className="inline-block text-[#D4845A]"
-            style={{ skewX }}
-          >
+          <span className="text-[#D4845A]">
             kami sederhanakan.&rdquo;
-          </motion.span>
-        </motion.h2>
+          </span>
+        </h2>
 
         {/* Stacked cards — no gap, no rounded */}
         <div className="overflow-hidden">
@@ -144,8 +135,8 @@ export function Product() {
                   className="mt-3 max-w-md text-justify text-sm leading-relaxed text-white/70"
                 >
                   Satu paket lengkap berisi booth, printer, dan software yang
-                  memungkinkan siapa saja memulai bisnis receipt photobooth tanpa
-                  perlu keahlian teknis.
+                  memungkinkan siapa saja memulai bisnis receipt photobooth
+                  tanpa perlu keahlian teknis.
                 </motion.p>
 
                 <motion.div
@@ -169,10 +160,8 @@ export function Product() {
           </div>
 
           {/* Card 2 — Runner: numbered flow */}
-          <div className="relative bg-stone-100 p-8 md:p-12 lg:p-14">
-            <NoiseOverlay opacity={0.4} />
-
-            <div className="relative z-10 flex flex-col gap-10 md:flex-row md:gap-14">
+          <div className="border-t border-border bg-background p-8 md:p-12 lg:p-14">
+            <div className="flex flex-col gap-10 md:flex-row md:gap-14">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -191,19 +180,19 @@ export function Product() {
 
               <div className="flex-1">
                 <div className="mb-10 max-w-md">
-                  <p className="text-xs font-medium uppercase tracking-widest text-stone-400">
+                  <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
                     Aplikasi Booth
                   </p>
-                  <h3 className="mt-3 text-2xl font-semibold leading-tight tracking-tight text-stone-900 md:text-3xl">
+                  <h3 className="mt-3 text-2xl font-semibold leading-tight tracking-tight text-foreground md:text-3xl">
                     Pengalaman di Booth.
                   </h3>
-                  <p className="mt-4 text-sm leading-relaxed text-stone-500">
-                    Aplikasi yang berjalan di setiap booth, melayani customer dari
-                    foto hingga cetak tanpa perlu operator.
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                    Aplikasi yang berjalan di setiap booth, melayani customer
+                    dari foto hingga cetak tanpa perlu operator.
                   </p>
                 </div>
 
-                <div className="flex flex-col gap-0 divide-y divide-stone-200">
+                <div className="flex flex-col gap-0 divide-y divide-border">
                   {runnerFeatures.map((item, i) => (
                     <motion.div
                       key={item.title}
@@ -213,17 +202,17 @@ export function Product() {
                       transition={{ duration: 0.4, delay: 0.1 + i * 0.06 }}
                       className="flex items-center gap-5 py-5"
                     >
-                      <span className="shrink-0 font-mono text-2xl font-bold text-stone-300">
+                      <span className="shrink-0 font-mono text-2xl font-bold text-muted-foreground/30">
                         {String(i + 1).padStart(2, "0")}
                       </span>
-                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white shadow-sm">
+                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-muted shadow-sm">
                         <item.icon className="h-4 w-4 stroke-[1.5] text-[#D4845A]" />
                       </div>
                       <div>
-                        <h4 className="text-sm font-semibold text-stone-900">
+                        <h4 className="text-sm font-semibold text-foreground">
                           {item.title}
                         </h4>
-                        <p className="mt-0.5 text-xs leading-relaxed text-stone-500">
+                        <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
                           {item.description}
                         </p>
                       </div>
@@ -235,23 +224,21 @@ export function Product() {
           </div>
 
           {/* Card 3 — Dashboard: bento grid */}
-          <div className="relative bg-stone-200 p-8 md:p-12 lg:p-14">
-            <NoiseOverlay opacity={0.4} />
-
-            <div className="relative z-10 mb-10 max-w-md">
-              <p className="text-xs font-medium uppercase tracking-widest text-stone-400">
+          <div className="border-t border-border bg-background p-8 md:p-12 lg:p-14">
+            <div className="mb-10 max-w-md">
+              <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
                 Web Dashboard
               </p>
-              <h3 className="mt-3 text-2xl font-semibold leading-tight tracking-tight text-stone-900 md:text-3xl">
+              <h3 className="mt-3 text-2xl font-semibold leading-tight tracking-tight text-foreground md:text-3xl">
                 Kelola Semua dari Satu Tempat.
               </h3>
-              <p className="mt-4 text-sm leading-relaxed text-stone-500">
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
                 Dashboard web untuk memantau, mengatur, dan mengembangkan bisnis
                 photobooth Anda dari mana saja.
               </p>
             </div>
 
-            <div className="relative z-10 grid grid-cols-1 gap-3 sm:grid-cols-3">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
               {dashboardFeatures.map((item, i) => (
                 <motion.div
                   key={item.title}
@@ -259,16 +246,24 @@ export function Product() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-60px" }}
                   transition={{ duration: 0.4, delay: 0.1 + i * 0.06 }}
-                  className={`bg-white p-5 shadow-sm ${
-                    i === 0 ? "sm:col-span-2 sm:row-span-2 sm:flex sm:flex-col sm:justify-between sm:p-8" : ""
+                  className={`bg-muted p-5 ${
+                    i === 0
+                      ? "sm:col-span-2 sm:row-span-2 sm:flex sm:flex-col sm:justify-between sm:p-8"
+                      : ""
                   }`}
                 >
-                  <item.icon className={`stroke-[1.5] text-[#D4845A] ${i === 0 ? "h-7 w-7" : "h-5 w-5"}`} />
+                  <item.icon
+                    className={`stroke-[1.5] text-[#D4845A] ${i === 0 ? "h-7 w-7" : "h-5 w-5"}`}
+                  />
                   <div className={i === 0 ? "mt-auto pt-6" : "mt-3"}>
-                    <h4 className={`font-semibold text-stone-900 ${i === 0 ? "text-base" : "text-sm"}`}>
+                    <h4
+                      className={`font-semibold text-foreground ${i === 0 ? "text-base" : "text-sm"}`}
+                    >
                       {item.title}
                     </h4>
-                    <p className={`leading-relaxed text-stone-500 ${i === 0 ? "mt-1.5 text-sm" : "mt-1 text-xs"}`}>
+                    <p
+                      className={`leading-relaxed text-muted-foreground ${i === 0 ? "mt-1.5 text-sm" : "mt-1 text-xs"}`}
+                    >
                       {item.description}
                     </p>
                   </div>
@@ -276,29 +271,22 @@ export function Product() {
               ))}
             </div>
           </div>
-
         </div>
 
         {/* Integrasi — standalone di bawah cards */}
         <div className="mt-16 md:mt-24">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6 }}
-            className="mb-8 text-center"
-          >
-            <p className="text-xs font-medium uppercase tracking-widest text-stone-400">
+          <div className="mb-8 text-center">
+            <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
               Integrasi
             </p>
-            <h3 className="mt-3 text-2xl font-semibold leading-tight tracking-tight text-stone-900 md:text-3xl">
+            <h3 className="mt-3 text-2xl font-semibold leading-tight tracking-tight text-foreground md:text-3xl">
               Terhubung dengan Ekosistem Anda.
             </h3>
-            <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-stone-500">
+            <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
               memoir. terintegrasi langsung dengan payment gateway, printer
               thermal, dan perangkat Anda.
             </p>
-          </motion.div>
+          </div>
 
           <IntegrationTree />
         </div>

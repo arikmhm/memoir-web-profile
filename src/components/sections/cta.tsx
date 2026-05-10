@@ -37,16 +37,18 @@ export function Cta() {
           className="mt-8 flex flex-wrap items-center justify-center gap-4"
         >
           <Link
-            href="mailto:hello@memoir.id"
+            href="https://wa.me/6285162894121"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex h-11 items-center rounded-lg bg-primary px-6 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            Hubungi Kami
+            Hubungi via WhatsApp
           </Link>
           <Link
-            href="#harga"
+            href="mailto:memoir.archiveproject@gmail.com"
             className="inline-flex h-11 items-center text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
-            Lihat harga &rarr;
+            Email kami &rarr;
           </Link>
         </motion.div>
       </div>

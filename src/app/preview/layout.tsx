@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { NoiseOverlay } from "@/components/layout/noise-overlay";
 
 export default function PreviewLayout({
   children,
@@ -7,7 +8,7 @@ export default function PreviewLayout({
 }) {
   return (
     <div className="flex flex-1 flex-col">
-      <header className="border-b border-border">
+      <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur-sm">
         <div className="mx-auto flex h-14 max-w-6xl items-center px-6">
           <Link href="/" className="text-lg font-semibold tracking-tight">
             memoir.
@@ -15,9 +16,12 @@ export default function PreviewLayout({
         </div>
       </header>
 
-      <main className="flex flex-1 flex-col">{children}</main>
+      <main className="relative flex flex-1 flex-col">
+        <NoiseOverlay />
+        {children}
+      </main>
 
-      <footer className="border-t border-border py-6">
+      <footer className="sticky bottom-0 z-50 border-t border-border bg-background/95 py-6 backdrop-blur-sm">
         <div className="mx-auto max-w-6xl px-6 text-center">
           <p className="text-xs text-muted-foreground">
             &copy; {new Date().getFullYear()} memoir.
