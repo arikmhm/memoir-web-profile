@@ -12,6 +12,10 @@ type SessionData = {
 const POLL_INTERVAL = 3_000;
 const MAX_POLL_DURATION = 120_000;
 
+function proxyUrl(url: string) {
+  return `/api/preview-image?url=${encodeURIComponent(url)}`;
+}
+
 export default function PreviewContent({
   initialData,
   transactionId,
@@ -72,7 +76,7 @@ export default function PreviewContent({
     if (!data.downloadUrl || downloading) return;
     setDownloading(true);
     try {
-      const res = await fetch(data.downloadUrl);
+      const res = await fetch(proxyUrl(data.downloadUrl));
       const blob = await res.blob();
       const ext = blob.type.includes("png")
         ? "png"
@@ -88,7 +92,7 @@ export default function PreviewContent({
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
     } catch {
-      window.open(data.downloadUrl, "_blank");
+      window.open(proxyUrl(data.downloadUrl), "_blank");
     } finally {
       setDownloading(false);
     }
@@ -169,7 +173,7 @@ export default function PreviewContent({
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           ref={imgRef}
-          src={data.downloadUrl}
+          src={data.downloadUrl ? proxyUrl(data.downloadUrl) : undefined}
           alt="Foto photobooth"
           onLoad={() => setImageLoaded(true)}
           onError={() => setImageError(true)}
