@@ -86,10 +86,7 @@ export default function PreviewContent({
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [remaining, setRemaining] = useState<number | null>(() => {
-    if (!initialData.createdAt) return null;
-    return new Date(initialData.createdAt).getTime() + EXPIRY_MS - Date.now();
-  });
+  const [remaining, setRemaining] = useState<number | null>(null);
   const imgRef = useRef<HTMLImageElement>(null);
 
   // Countdown — runs when createdAt becomes available (e.g. after polling resolves)
