@@ -261,9 +261,7 @@ export default function PreviewContent({
         {imageError && (
           <div className="flex h-80 w-56 flex-col items-center justify-center gap-2 bg-muted">
             <ImageOff className="h-8 w-8 text-muted-foreground" />
-            <p className="text-xs text-muted-foreground">
-              Gagal memuat gambar
-            </p>
+            <p className="text-xs text-muted-foreground">Gagal memuat gambar</p>
           </div>
         )}
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -287,10 +285,6 @@ export default function PreviewContent({
           transition={{ duration: 0.4, delay: 0.15 }}
           className="w-full border-y border-dashed border-border py-4"
         >
-          <p className="mb-3 text-center text-sm font-semibold tracking-widest">
-            memoir.
-          </p>
-
           <div className="space-y-1.5 text-xs">
             <div className="flex justify-between">
               <span className="text-muted-foreground">Order</span>
@@ -389,7 +383,7 @@ export default function PreviewContent({
         {remaining !== null && (
           <div className="flex items-center gap-1.5 text-xs text-[#D4845A]/60">
             <Clock className="h-3 w-3 shrink-0" />
-            <span>Tersisa {formatCountdown(remaining)}</span>
+            <span>Foto akan terhapus dalam {formatCountdown(remaining)}</span>
           </div>
         )}
       </motion.div>
