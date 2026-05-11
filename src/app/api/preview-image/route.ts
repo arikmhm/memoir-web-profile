@@ -19,6 +19,13 @@ export async function GET(request: NextRequest) {
     return new NextResponse("Forbidden", { status: 403 });
   }
 
+  // In dev, some ISPs (e.g. Telkomsel) MITM HTTPS to *.r2.dev with their own
+  // cert, which Node's fetch rejects. Redirect to the upstream URL so the
+  // browser fetches directly using the system trust store.
+  if (process.env.NODE_ENV === "development") {
+    return NextResponse.redirect(url, 307);
+  }
+
   let upstream: Response;
   try {
     upstream = await fetch(url);
