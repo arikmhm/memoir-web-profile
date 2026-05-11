@@ -11,6 +11,16 @@ type SessionData = {
   status: "ready" | "processing";
   downloadUrl?: string;
   createdAt?: string;
+  transaction?: {
+    orderId: string;
+    status: "PENDING" | "PAID" | "FAILED" | "EXPIRED";
+    paymentMethod: "PG" | "CASH" | "STATIC_QRIS";
+    printQty: number;
+    hasDigitalCopy: boolean;
+    totalAmount: number;
+    paidAt: string | null;
+    createdAt: string;
+  };
 };
 
 const getSession = cache(

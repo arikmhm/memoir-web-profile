@@ -12,10 +12,22 @@ import {
   Clock,
 } from "lucide-react";
 
+type Transaction = {
+  orderId: string;
+  status: "PENDING" | "PAID" | "FAILED" | "EXPIRED";
+  paymentMethod: "PG" | "CASH" | "STATIC_QRIS";
+  printQty: number;
+  hasDigitalCopy: boolean;
+  totalAmount: number;
+  paidAt: string | null;
+  createdAt: string;
+};
+
 type SessionData = {
   status: "ready" | "processing";
   downloadUrl?: string;
   createdAt?: string;
+  transaction?: Transaction;
 };
 
 const POLL_INTERVAL = 3_000;
@@ -31,6 +43,30 @@ function formatCountdown(ms: number): string {
   if (days > 0) return `${days} hari ${hours} jam ${minutes} menit`;
   if (hours > 0) return `${hours} jam ${minutes} menit ${seconds} detik`;
   return `${minutes} menit ${seconds} detik`;
+}
+
+function formatRupiah(amount: number): string {
+  return new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+    minimumFractionDigits: 0,
+  }).format(amount);
+}
+
+function formatPaymentMethod(method: Transaction["paymentMethod"]): string {
+  if (method === "CASH") return "Tunai";
+  if (method === "STATIC_QRIS") return "QRIS";
+  return "Payment Gateway";
+}
+
+function formatDate(iso: string): string {
+  return new Intl.DateTimeFormat("id-ID", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(new Date(iso));
 }
 
 function proxyUrl(url: string) {
@@ -50,10 +86,13 @@ export default function PreviewContent({
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [remaining, setRemaining] = useState<number | null>(null);
+  const [remaining, setRemaining] = useState<number | null>(() => {
+    if (!initialData.createdAt) return null;
+    return new Date(initialData.createdAt).getTime() + EXPIRY_MS - Date.now();
+  });
   const imgRef = useRef<HTMLImageElement>(null);
 
-  // Countdown to expiry (7 days from createdAt)
+  // Countdown — runs when createdAt becomes available (e.g. after polling resolves)
   useEffect(() => {
     if (!data.createdAt) return;
     const expiresAt = new Date(data.createdAt).getTime() + EXPIRY_MS;
@@ -88,9 +127,7 @@ export default function PreviewContent({
       }
 
       try {
-        const res = await fetch(
-          `/api/v1/public/sessions/${transactionId}`,
-        );
+        const res = await fetch(`/api/v1/public/sessions/${transactionId}`);
         if (!res.ok) return;
         const json = await res.json();
         if (json.data.status === "ready") {
@@ -203,6 +240,8 @@ export default function PreviewContent({
 
   // ── Ready ───────────────────────────────────────────────────────────────────
 
+  const tx = data.transaction;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 12 }}
@@ -215,7 +254,7 @@ export default function PreviewContent({
         initial={{ opacity: 0, scale: 0.97 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className="relative overflow-hidden rounded-2xl shadow-2xl"
+        className="relative overflow-hidden shadow-2xl"
       >
         {!imageLoaded && !imageError && (
           <div className="flex h-80 w-56 items-center justify-center bg-muted">
@@ -243,14 +282,63 @@ export default function PreviewContent({
         />
       </motion.div>
 
+      {/* Receipt */}
+      {tx && (
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.15 }}
+          className="w-full border-y border-dashed border-border py-4"
+        >
+          <p className="mb-3 text-center text-sm font-semibold tracking-widest">
+            memoir.
+          </p>
+
+          <div className="space-y-1.5 text-xs">
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">Order</span>
+              <span className="font-medium tabular-nums">{tx.orderId}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">Pembayaran</span>
+              <span className="font-medium">
+                {formatPaymentMethod(tx.paymentMethod)}
+              </span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">Cetak</span>
+              <span className="font-medium">{tx.printQty} lembar</span>
+            </div>
+            {tx.hasDigitalCopy && (
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Digital copy</span>
+                <span className="font-medium">Termasuk</span>
+              </div>
+            )}
+          </div>
+
+          <div className="my-3 border-t border-dashed border-border" />
+
+          <div className="flex justify-between text-sm font-semibold">
+            <span>Total</span>
+            <span>{formatRupiah(tx.totalAmount)}</span>
+          </div>
+
+          {tx.paidAt && (
+            <p className="mt-2 text-center text-[10px] text-muted-foreground">
+              {formatDate(tx.paidAt)}
+            </p>
+          )}
+        </motion.div>
+      )}
+
       {/* Actions */}
       <motion.div
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay: 0.2 }}
+        transition={{ duration: 0.4, delay: tx ? 0.3 : 0.2 }}
         className="flex w-full flex-col items-center gap-3"
       >
-        {/* Buttons */}
         <div className="flex w-full flex-col gap-3">
           <button
             type="button"
@@ -301,7 +389,6 @@ export default function PreviewContent({
           </button>
         </div>
 
-        {/* Expiry countdown */}
         {remaining !== null && (
           <div className="flex items-center gap-1.5 text-xs text-[#D4845A]/60">
             <Clock className="h-3 w-3 shrink-0" />
