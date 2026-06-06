@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { NoiseOverlay } from "@/components/layout/noise-overlay";
 
 export const metadata: Metadata = {
   title: "memoir. | Preview",
@@ -21,8 +20,7 @@ export default function PreviewLayout({
         </div>
       </header>
 
-      <main className="relative flex flex-1 flex-col">
-        <NoiseOverlay />
+      <main className="flex flex-1 flex-col bg-white">
         {children}
       </main>
 

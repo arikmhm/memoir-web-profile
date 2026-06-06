@@ -5,22 +5,12 @@ import PreviewContent from "./preview-content";
 
 const API_URL =
   process.env.API_URL ||
-  "https://backend-memoir-development.up.railway.app/api/v1";
+  "https://backend-memoir-production.up.railway.app/api/v1";
 
 type SessionData = {
   status: "ready" | "processing";
   downloadUrl?: string;
   createdAt?: string;
-  transaction?: {
-    orderId: string;
-    status: "PENDING" | "PAID" | "FAILED" | "EXPIRED";
-    paymentMethod: "PG" | "CASH" | "STATIC_QRIS";
-    printQty: number;
-    hasDigitalCopy: boolean;
-    totalAmount: number;
-    paidAt: string | null;
-    createdAt: string;
-  };
 };
 
 const getSession = cache(
